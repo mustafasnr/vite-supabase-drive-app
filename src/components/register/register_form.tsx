@@ -38,7 +38,6 @@ export default function RegisterForm() {
       toast.success("Kayıt Başarılı");
       navigate("/");
     } catch (error: any) {
-      console.error("Kayıt error", error);
       toast.error("Hata Meydana geldi: ", { description: error.message });
     }
   }

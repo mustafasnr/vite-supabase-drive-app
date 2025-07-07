@@ -9,27 +9,28 @@ function MainHeader() {
   return (
     <header className="flex h-14 items-center justify-between gap-4 px-4">
       {/* Sol kısım */}
-      <div className="w-52">
+      <div className="w-full max-w-52">
         <Link to={"/"} className="inline-flex items-center space-x-2">
           <User className="size-5" />
           <span className="text-lg font-bold">MDrive</span>
         </Link>
       </div>
+
       {/* Sağ kısım */}
-      <div className="flex flex-1 items-center justify-between">
-        {/* Search alanı */}
-        <FileSearchInput />
-        {/* Command + Avatar */}
-        <div className="ml-4 flex items-center space-x-4">
-          {/* Upload Button */}
-          <UploadTriggerButton />
-
-          {/* Command Button and CommandDialog */}
-          <CommandTriggerButton />
-
-          {/* Avatar Dropdown */}
-          <HeaderUser />
+      <div className="flex flex-1 items-center justify-end gap-4">
+        {/* Search alanı - sadece md ve üzeri ekranlarda göster */}
+        <div className="hidden md:block">
+          <FileSearchInput />
         </div>
+
+        {/* Upload ve Command Button - sadece md ve üzeri ekranlarda göster */}
+        <div className="hidden items-center space-x-4 md:flex">
+          <UploadTriggerButton />
+          <CommandTriggerButton />
+        </div>
+
+        {/* Avatar her zaman sağda */}
+        <HeaderUser />
       </div>
     </header>
   );

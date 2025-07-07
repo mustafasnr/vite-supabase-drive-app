@@ -30,14 +30,28 @@ function UploadTriggerButton() {
   const { setUploadOpen } = useAccessibility();
   return (
     <Button
-      className="cursor-pointer rounded-xl"
+      className="hidden cursor-pointer rounded-xl md:flex"
       onClick={() => {
         setUploadOpen(true);
       }}
     >
       <Upload />
-      Yeni
+      <span className="hidden lg:block">Yeni</span>
     </Button>
   );
 }
-export { UploadDialog, UploadTriggerButton };
+function UploadSheetTriggerButton() {
+  const { setUploadOpen } = useAccessibility();
+  return (
+    <Button
+      className="flex cursor-pointer flex-row items-center justify-start px-0"
+      variant={"link"}
+      onClick={() => {
+        setUploadOpen(true);
+      }}
+    >
+      <span>Dosya Yükle</span>
+    </Button>
+  );
+}
+export { UploadDialog, UploadTriggerButton, UploadSheetTriggerButton };

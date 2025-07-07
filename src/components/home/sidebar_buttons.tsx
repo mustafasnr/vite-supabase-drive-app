@@ -7,7 +7,7 @@ function MainSideBarButton() {
   return (
     <Button
       variant={"outline"}
-      className="rounded-full"
+      className="hidden rounded-full md:flex"
       size={"icon"}
       onClick={() => toggleSidebar()}
     >

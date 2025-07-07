@@ -6,7 +6,7 @@ function FileSearchInput() {
   const { searchRef } = useAccessibility();
   const { setSearchQuery } = useFilesContext();
   return (
-    <div className="w-full max-w-md">
+    <div className="hidden w-full max-w-xs min-w-32 sm:block">
       <Input
         ref={searchRef}
         onChange={(e) => {

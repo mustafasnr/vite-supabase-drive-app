@@ -34,7 +34,6 @@ export default function LoginForm() {
       toast.success("Giriş Başarılı");
       navigate("/");
     } catch (error: any) {
-      console.error("Login error", error);
       toast.error("Hata Meydana geldi: ", { description: error.message });
     }
   }

@@ -46,7 +46,6 @@ export default function AccessibilityProvider({
       <CmmndDialog open={commandOpen} setOpen={setCommandOpen} />
       <UploadDialog open={uploadOpen} setOpen={setUploadOpen} />
       <SettingsDialog open={settingsOpen} setOpen={setSettingsOpen} />
-
       {children}
     </AccessibilityContext.Provider>
   );

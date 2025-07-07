@@ -1,7 +1,7 @@
 import { validateEditProfile } from "@/lib/form-schemas/edit_profile_schema";
 import { validateLoginForm } from "@/lib/form-schemas/login_schema";
 import { validateRegisterForm } from "@/lib/form-schemas/register_schema";
-import { checkPassword, createPasswordHash } from "@/lib/utils";
+import { createPasswordHash } from "@/lib/utils";
 import { login, signOut, signUp, updateUser } from "@/supabase/auth";
 import { supabaseClient } from "@/supabase/client";
 
@@ -59,7 +59,7 @@ export async function validateLoggedInUser() {
   return await supabaseClient.auth.getUser();
 }
 
-export async function updateProfileAction(values: any, old_hash: string) {
+export async function updateProfileAction(values: any) {
   // 1) Kullanıcıyı doğrula
   const { data: userData, error: userError } = await validateLoggedInUser()
   if (userError) throw new Error('Kullanıcı oturumu doğrulanamadı')
@@ -69,8 +69,9 @@ export async function updateProfileAction(values: any, old_hash: string) {
   if (!result) throw new Error('Form doğrulama hatası')
 
   // 3) Eski parolayı kontrol et
-  const isMatch = await checkPassword(result.edit_profile_old_password, old_hash)
-  if (!isMatch) throw new Error('Parola hatalı')
+  // const isMatch = await checkPassword(result.edit_profile_old_password, old_hash)
+  const { error: passwordMatchError } = await login({ email: userData!.user!.email!, password: result.edit_profile_old_password });
+  if (passwordMatchError) throw new Error('Parola hatalı')
 
   // 4) Yeni profil verilerini hazırla
   const updates: Record<string, any> = {

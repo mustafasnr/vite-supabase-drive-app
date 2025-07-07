@@ -1,4 +1,5 @@
 import { useAccessibility } from "@/context/accessibility-context";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
@@ -23,8 +24,18 @@ function SettingsDialog({ open, setOpen }: { open: any; setOpen: any }) {
     </Dialog>
   );
 }
-function SettingsTriggerFunction() {
+function SettingsSheetTriggerButton() {
   const { setSettingsOpen } = useAccessibility();
-  return setSettingsOpen(true);
+  return (
+    <Button
+      className="flex cursor-pointer flex-row items-center justify-start px-0"
+      variant={"link"}
+      onClick={() => {
+        setSettingsOpen(true);
+      }}
+    >
+      <span>Profili Düzenle</span>
+    </Button>
+  );
 }
-export { SettingsDialog, SettingsTriggerFunction };
+export { SettingsDialog, SettingsSheetTriggerButton };

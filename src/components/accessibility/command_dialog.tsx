@@ -48,10 +48,10 @@ function CommandTriggerButton() {
   return (
     <Button
       variant="outline"
-      className="flex cursor-pointer items-center justify-between gap-2.5 rounded-xl text-sm"
+      className="hidden cursor-pointer items-center justify-between gap-2.5 rounded-xl text-sm md:flex"
       onClick={() => setCommandOpen(true)}
     >
-      <span className="text-xs">Kısayollar</span>
+      <span className="hidden text-xs lg:block">Kısayollar</span>
       <div className="flex gap-0.5">
         <span>
           <kbd className="bg-muted text-foreground rounded px-1 text-xs">
@@ -66,4 +66,30 @@ function CommandTriggerButton() {
   );
 }
 
-export { CmmndDialog, CommandTriggerButton };
+function CommandSheetTriggerButton() {
+  const { setCommandOpen } = useAccessibility();
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setCommandOpen((open: boolean) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+  return (
+    <Button
+      className="flex cursor-pointer flex-row items-center justify-start px-0"
+      variant={"link"}
+      onClick={() => {
+        setCommandOpen(true);
+      }}
+    >
+      <span>Kısayollar</span>
+    </Button>
+  );
+}
+
+export { CmmndDialog, CommandTriggerButton, CommandSheetTriggerButton };

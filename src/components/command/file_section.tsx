@@ -1,21 +1,25 @@
 import { CommandGroup, CommandItem } from "../ui/command";
 import { Search, Upload } from "lucide-react";
 import { useAccessibility } from "@/context/accessibility-context";
+import { useIsMobile } from "@/hooks/use_mobile";
 
 function CommandFileSection() {
   const { setCommandOpen, requestSearchFocus, setUploadOpen } =
     useAccessibility();
+  const isMobile = useIsMobile();
   return (
     <CommandGroup heading="Dosya İşlemleri">
-      <CommandItem
-        onSelect={() => {
-          setCommandOpen(false);
-          requestSearchFocus();
-        }}
-      >
-        <Search />
-        <span>Dosya Ara</span>
-      </CommandItem>
+      {!isMobile && (
+        <CommandItem
+          onSelect={() => {
+            setCommandOpen(false);
+            requestSearchFocus();
+          }}
+        >
+          <Search />
+          <span>Dosya Ara</span>
+        </CommandItem>
+      )}
 
       <CommandItem
         onSelect={() => {

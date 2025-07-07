@@ -1,7 +1,6 @@
 import { supabaseClient } from "../client";
 
 export async function getUser() {
-  console.warn("KULLANICI BİLGİLERİ İSTENDİ");
   const { data: userData, error } = await supabaseClient.auth.getUser();
 
   if (!error) {

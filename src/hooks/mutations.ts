@@ -20,8 +20,8 @@ export function useUpdateProfileMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ values, customHash }: { values: any; customHash: string }) => {
-      return await updateProfileAction(values, customHash);
+    mutationFn: async ({ values }: { values: any; }) => {
+      return await updateProfileAction(values);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });

@@ -1,7 +1,6 @@
 import { supabaseClient } from "../client";
 
 export async function getAllFiles() {
-  console.warn("BÜTÜN DOSYALAR İSTENDİ")
   const { data: userData, error: userError } = await supabaseClient.auth.getUser();
 
   if (userError || !userData?.user) {

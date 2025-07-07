@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }: any) => {
     const { data: listener } = supabaseClient.auth.onAuthStateChange(
       (_event, session) => {
         if (_event == "USER_UPDATED") {
-          console.log("kullanıcı güncellendi");
           queryClient.invalidateQueries({
             queryKey: ["userData"],
             type: "active",
@@ -40,10 +39,6 @@ export const AuthProvider = ({ children }: any) => {
         if (_event === "SIGNED_OUT") {
           // tüm cache'i temizle
           queryClient.clear();
-        }
-        if (_event === "SIGNED_IN") {
-          // oturuma tekrar girildiğinde tüm sorguları tazeleyelim
-          queryClient.refetchQueries();
         }
         setSession(session);
         setUser(session?.user);

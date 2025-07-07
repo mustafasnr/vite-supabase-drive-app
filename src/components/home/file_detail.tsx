@@ -15,7 +15,7 @@ import { sizeToReadable } from "@/lib/utils";
 function FileDetail() {
   const { selectedFile } = useFilesContext();
   return (
-    <Card className="flex-1">
+    <Card className="hidden flex-1 md:flex">
       {selectedFile != null ? (
         <>
           <CardHeader>

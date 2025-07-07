@@ -58,7 +58,6 @@ export default function EditProfileForm() {
     toast.promise(
       updateMutation.mutateAsync({
         values,
-        customHash: userData!.custom_hash!,
       }),
       {
         loading: "Düzenleme işlemi devam ediyor",
